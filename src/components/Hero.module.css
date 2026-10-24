@@ -1,0 +1,66 @@
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 8vw;
+  border-bottom: 1px solid var(--border);
+}
+
+.label {
+  font-family: var(--font-body);
+  color: var(--muted);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 1;
+  margin: 1rem 0;
+}
+
+.title {
+  font-family: var(--font-display);
+  color: var(--green-bright);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin: 0 0 1.5rem;
+}
+
+.intro {
+  max-width: 40rem;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.primary,
+.secondary {
+  padding: 0.85rem 1.6rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.primary {
+  background: var(--green);
+  color: #fff;
+}
+
+.primary:hover { background: var(--green-bright); }
+
+.secondary {
+  border: 1px solid var(--green);
+  color: var(--text);
+}
+
+.secondary:hover { border-color: var(--green-bright); }
