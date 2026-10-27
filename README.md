@@ -1,16 +1,46 @@
-# React + Vite
+# Pratik G — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Single-page developer portfolio built with React 19 and Vite. Plain JSX, no TypeScript.
 
-Currently, two official plugins are available:
+## Sections
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Hero** — availability badge, name, role, tagline, and buttons to projects/contact
+- **Toolbox** — skills as brand-icon chips
+- **Projects** — shipped work with status badges
+- **Contact** — email, GitHub, LinkedIn
+- **Footer** — name and tagline
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + Vite
+- Framer Motion for animations
+- Plain CSS in `src/index.css` (theme tokens + layout)
+- Inline SVG brand icons in `src/components/icons.jsx`
 
-## Expanding the ESLint configuration
+## Commands
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Start the dev server with HMR |
+| `npm run build` | Build the static site to `dist/` |
+| `npm run preview` | Serve `dist/` locally |
+| `npm run lint` | Run ESLint |
+
+There is no test runner configured.
+
+## Editing content
+
+- `src/data/profile.js` — name, role, tagline, email, location
+- `src/data/skills.js` — skill chips; add a matching icon in `src/components/icons.jsx`
+- `src/data/projects.js` — project cards and statuses
+
+## Structure
+
+```
+src/
+  components/   Hero, Skills, Projects, Contact, Footer, icons
+  data/         Content files
+  index.css     Global styles and theme tokens
+```
+
+`dist/` is gitignored. No CI or pre-commit hooks.
