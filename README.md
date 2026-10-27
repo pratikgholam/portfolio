@@ -1,4 +1,4 @@
-# Pratik G — Portfolio
+# Portfolio
 
 Single-page developer portfolio built with React 19 and Vite. Plain JSX, no TypeScript.
 
