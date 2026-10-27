@@ -1,34 +1,88 @@
-import { projects } from "../data/projects";
-import styles from "./Projects.module.css";
+import { motion } from "framer-motion";
+import { fadeUp, staggerVertical } from "./animations";
 
-export default function Projects() {
+export default function Projects({ projects }) {
   return (
-    <section id="projects" className={styles.section}>
-      <p className={styles.label}>02 / Projects</p>
-      <div className={styles.list}>
-        {projects.map((p) => (
-          <article key={p.id} className={styles.card}>
-            <div className={styles.head}>
-              <span className={styles.num}>{p.id}</span>
-              <span className={styles.status}>{p.status}</span>
-            </div>
-            <h3 className={styles.name}>{p.name}</h3>
-            <p className={styles.desc}>{p.description}</p>
-            <ul className={styles.highlights}>
-              {p.highlights.map((h) => (
-                <li key={h}>{h}</li>
-              ))}
-            </ul>
-            <ul className={styles.stack}>
-              {p.stack.map((s) => (
-                <li key={s}>{s}</li>
-              ))}
-            </ul>
-            <a className={styles.btn} href={p.repo} target="_blank" rel="noopener noreferrer">
-              View on GitHub
-            </a>
-          </article>
-        ))}
+    <section className="section" id="projects" aria-label="Projects">
+      <div className="container">
+        <motion.h2
+          className="section-title"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+        >
+          <span className="tag complete">Built</span>
+          What I&rsquo;ve shipped
+        </motion.h2>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerVertical}
+          className="projects-list"
+        >
+          {projects.map((project) => (
+            <motion.div
+              key={project.id}
+              className="card project-card"
+              whileHover={{ x: -10 }}
+              variants={fadeUp}
+            >
+              <div
+                className={`tag ${project.status.toLowerCase()}`}
+                style={{ display: "inline-block", marginBottom: "1rem" }}
+              >
+                {project.status}
+              </div>
+              <h3 style={{ margin: "0 0 0.5rem" }}>{project.title}</h3>
+              <p
+                style={{
+                  color: "#94a3b8",
+                  marginBottom: "0.75rem",
+                  fontSize: "1.15rem",
+                  fontWeight: 600,
+                }}
+              >
+                {project.tagline}
+              </p>
+              <p
+                style={{
+                  color: "#cbd5e1",
+                  fontSize: "1.05rem",
+                  lineHeight: 1.7,
+                  marginBottom: "1.25rem",
+                }}
+              >
+                {project.description}
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "0.5rem",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                {project.tech.map((t) => (
+                  <span key={t} className="tech-pill">
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={project.link}
+                className="btn"
+                style={{ width: "fit-content" }}
+                target="_blank"
+                rel="noopener"
+              >
+                Details →
+              </a>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
