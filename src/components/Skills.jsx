@@ -36,7 +36,7 @@ export default function Skills({ skills }) {
           variants={fadeUp}
         >
           <span className="tag complete">Toolbox</span>
-          Tools I reach for
+          Skills
         </motion.h2>
 
         <motion.div

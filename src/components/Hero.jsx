@@ -13,19 +13,24 @@ export default function Hero({ profile }) {
           variants={fadeUp}
         >
           <span className="tag complete hero-status">
-            Open to backend / AI roles
+            Open to Backend / AI roles
           </span>
           <h1 className="hero-title">
             <span className="gradient-text">{profile.name}</span>
           </h1>
           <p className="hero-role">{profile.role}</p>
-          <p className="hero-sub">{profile.boldClaim}</p>
+          <p className="hero-sub">{profile.tagline}</p>
           <div className="hero-actions">
             <a href="#projects" className="btn primary">
               See my work
             </a>
-            <a href="#contact" className="btn">
-              Get in touch
+            <a
+              href="/resume.pdf"
+              className="btn"
+              target="_blank"
+              rel="noopener"
+            >
+              Download resume
             </a>
           </div>
         </motion.div>
