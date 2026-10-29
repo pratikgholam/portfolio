@@ -5,7 +5,6 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <p className="footer-name">{profile.name}</p>
-        <p className="footer-tagline">{profile.boldClaim}</p>
       </div>
     </footer>
   );
