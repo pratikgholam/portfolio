@@ -7,7 +7,7 @@ Single-page Vite + React portfolio. Plain JSX (no TypeScript), ESM (`"type": "mo
 - `npm run dev` — start Vite dev server (HMR)
 - `npm run build` — build static output to `dist/` (vite uses rolldown)
 - `npm run preview` — serve `dist/` locally to verify the production build
-- `npx wrangler deploy` — build must run first (`npm run build`); `wrangler.jsonc` serves `./dist` as Cloudflare Workers static assets. Wrangler is not a devDependency (`npx` fetches it). No CI.
+- `npx wrangler deploy` — build must run first (`npm run build`); `wrangler.jsonc` serves `./dist` as Cloudflare Workers static assets and includes a `previews.vars` block (required by `npx wrangler preview`). Wrangler is not a devDependency (`npx` fetches it). No CI.
 - `npm run lint` — ESLint over the project (`eslint.config.js` flat config; `dist` is ignored)
 
 No test script and no test runner is installed. Do not add test commands unless a runner is added first.
