@@ -95,17 +95,6 @@ export default function Projects({ projects }) {
                       Live demo
                     </a>
                   )}
-                  <button
-                    className="btn"
-                    type="button"
-                    onClick={() =>
-                      setOpenId(openId === project.id ? null : project.id)
-                    }
-                    aria-expanded={isOpen}
-                    aria-controls={`details-${project.id}`}
-                  >
-                    Details
-                  </button>
                 </div>
 
                 <motion.div

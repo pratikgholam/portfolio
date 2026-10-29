@@ -4,11 +4,14 @@ Single-page developer portfolio built with React 19 and Vite. Plain JSX, no Type
 
 ## Sections
 
-- **Hero** — availability badge, name, role, tagline, and buttons to projects/contact
-- **Toolbox** — skills as brand-icon chips
+- **Nav** — sticky links with active-section highlight, Resume → `public/resume.pdf`
+- **Hero** — availability badge, name, role, tagline, and buttons to projects/resume
+- **About** — short bio and stat chips
+- **Experience** — timeline of roles plus education
+- **Skills** — skills as brand-icon cards
 - **Projects** — shipped work with status badges
 - **Contact** — email, GitHub, LinkedIn
-- **Footer** — name and tagline
+- **Footer** — name
 
 ## Stack
 
@@ -26,6 +29,8 @@ Single-page developer portfolio built with React 19 and Vite. Plain JSX, no Type
 | `npm run preview` | Serve `dist/` locally |
 | `npm run lint` | Run ESLint |
 
+Deploy: `npm run build`, then `npx wrangler deploy` (Cloudflare Workers static assets, config in `wrangler.jsonc`).
+
 There is no test runner configured.
 
 ## Editing content
@@ -38,9 +43,9 @@ There is no test runner configured.
 
 ```
 src/
-  components/   Hero, Skills, Projects, Contact, Footer, icons
-  data/         Content files
-  index.css     Global styles and theme tokens
+  components/   Nav, Hero, About, Experience, Skills, Projects, Contact, Footer, icons, animations
+  data/         Content files (profile, experience, skills, projects)
+  index.css     Global styles and theme tokens (the only stylesheet)
 ```
 
 `dist/` is gitignored. No CI or pre-commit hooks.
