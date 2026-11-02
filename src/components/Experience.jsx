@@ -1,71 +1,40 @@
-import { motion } from "framer-motion";
-import { fadeUp, staggerVertical } from "./animations";
 import { education } from "../data/experience";
 
 export default function Experience({ experience: list }) {
+  const SUMMARY = {
+    "Algorithms Software":
+      "ERP payroll module; bulk employee-image import via Excel; SQL queries, stored procedures and client-side fixes.",
+    EECI:
+      "Real-time hardware monitoring desktop client; charted machine data over Ethernet via C/C++ interop (P/Invoke).",
+    "D2K Technologies":
+      "Loan-platform REST APIs (CRUD) for a mobile app; JWT authentication; endpoints shaped with the frontend team.",
+    "LearningMate Solutions":
+      "E-learning course content for K-12 sections; placeholder sections for client-hosted videos.",
+  };
+
   return (
     <section className="section" id="experience" aria-label="Experience">
       <div className="container">
-        <motion.h2
-          className="section-title"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-        >
-          <span className="tag complete">Work</span> Experience
-        </motion.h2>
-
-        <motion.div
-          className="timeline"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={staggerVertical}
-        >
+        <h2 className="section-title">Experience</h2>
+        <div className="timeline">
           {list.map((role) => (
-            <motion.div
-              key={role.company}
-              className="timeline-item"
-              variants={fadeUp}
-            >
-              <div className="card">
-                <div className="role-head">
-                  <div>
-                    <h3 style={{ margin: "0 0 0.25rem" }}>{role.title}</h3>
-                    <p
-                      className="role-company"
-                      style={{ margin: 0, color: "#94a3b8" }}
-                    >
-                      {role.company}
-                    </p>
-                    <p
-                      className="role-dates"
-                      style={{ margin: 0, color: "#94a3b8", fontSize: "0.9rem" }}
-                    >
-                      {role.dates}
-                    </p>
-                  </div>
-                  <div className="role-tags">
-                    {role.tags.map((t) => (
-                      <span key={t} className="tech-pill">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <ul className="role-bullets">
-                  {role.bullets.map((b) => (
-                    <li key={b}>{b}</li>
+            <div className="role" key={role.company}>
+              <div className="role-head">
+                <h3 className="role-company">{role.company}</h3>
+                <p className="role-title">{role.title}</p>
+                <div className="role-meta">
+                  <span>{role.dates}</span>
+                  {role.tags.map((t) => (
+                    <span key={t} className="chip">{t}</span>
                   ))}
-                </ul>
+                </div>
               </div>
-            </motion.div>
+              <p className="role-summary">{SUMMARY[role.company]}</p>
+            </div>
           ))}
-        </motion.div>
-
+        </div>
         <div className="education">
-          <p style={{ margin: 0 }}>
+          <p>
             <strong>Education:</strong>{" "}
             {education.degree}, {education.school} ({education.years}).
           </p>

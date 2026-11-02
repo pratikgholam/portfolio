@@ -59,15 +59,12 @@ export default function Nav() {
         >
           Menu
         </button>
-        <div
-          className={`nav-links ${expanded ? "open" : ""}`}
-          id="nav-menu"
-          hidden={!expanded}
-        >
+        <div className={`nav-links ${expanded ? "open" : ""}`} id="nav-menu" hidden={!expanded}>
           {LINKS.map(({ label, href }) => (
             <a
               key={label}
               href={href}
+              className="nav-link"
               aria-current={activeId === href.slice(1) ? "page" : undefined}
             >
               {label}

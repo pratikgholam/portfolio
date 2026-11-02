@@ -1,81 +1,48 @@
-import { motion } from "framer-motion";
-import { fadeUp, stagger } from "./animations";
 import {
   SkillCsharp,
   SkillDotnet,
   SkillSql,
-  SkillPython,
-  SkillReact,
   SkillPostgres,
   SkillSqlite,
+  SkillReact,
   SkillCopilot,
   SkillAzureDevops,
 } from "./icons";
 
-const ICONS = {
+const ICON_BY_KEY = {
   csharp: SkillCsharp,
   dotnet: SkillDotnet,
   sql: SkillSql,
-  python: SkillPython,
-  react: SkillReact,
   postgres: SkillPostgres,
   sqlite: SkillSqlite,
-  copilot: SkillCopilot,
+  react: SkillReact,
+  javascript: undefined,
   azuredevops: SkillAzureDevops,
+  copilot: SkillCopilot,
+  aspnetmvc: undefined,
+  rest: undefined,
 };
 
 export default function Skills({ skills }) {
   return (
     <section className="section" id="skills" aria-label="Skills">
       <div className="container">
-        <motion.h2
-          className="section-title"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-        >
-          <span className="tag complete">Toolbox</span>
-          Skills
-        </motion.h2>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={stagger}
-          className="skills-row"
-        >
+        <h2 className="section-title">Skills</h2>
+        <div className="skills-grid">
           {skills.map((skill) => {
-            const Icon = ICONS[skill.icon];
+            const Icon = ICON_BY_KEY[skill.icon];
             return (
-              <motion.div
-                key={skill.name}
-                className="skill-chip"
-                variants={fadeUp}
-                whileHover={{ y: -4 }}
-                style={{ "--skill-color": skill.color }}
-              >
-                {Icon ? (
-                  <span
-                    className="skill-chip-icon"
-                    style={{ color: skill.color }}
-                  >
-                    <Icon />
-                  </span>
-                ) : (
-                  <span
-                    className="skill-chip-icon skill-chip-icon-text"
-                    style={{ color: skill.color }}
-                  >
-                    {skill.badge}
+              <span key={skill.name} className="skill-chip">
+                {Icon ? <Icon className="skill-icon" aria-hidden="true" /> : (
+                  <span className="chip" style={{ display: "inline-block", marginRight: "0.4rem" }}>
+                    {skill.badge || skill.name.slice(0, 1).toUpperCase()}
                   </span>
                 )}
-                <span className="skill-chip-name">{skill.name}</span>
-              </motion.div>
+                {skill.name}
+              </span>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
