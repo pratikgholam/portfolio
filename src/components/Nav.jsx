@@ -59,7 +59,7 @@ export default function Nav() {
         >
           Menu
         </button>
-        <div className={`nav-links ${expanded ? "open" : ""}`} id="nav-menu" hidden={!expanded}>
+        <div className={`nav-links ${expanded ? "open" : ""}`} id="nav-menu">
           {LINKS.map(({ label, href }) => (
             <a
               key={label}
@@ -72,7 +72,7 @@ export default function Nav() {
           ))}
           <a
             href="/resume.pdf"
-            className="btn primary"
+            className="btn"
             target="_blank"
             rel="noopener"
           >
