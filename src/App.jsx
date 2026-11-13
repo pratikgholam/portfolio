@@ -16,11 +16,17 @@ export default function App() {
     <main>
       <Nav />
       <Hero profile={profile} />
+      <section className="section-divider" />
       <About />
+      <section className="section-divider" />
       <Experience experience={experience} />
+      <section className="section-divider" />
       <Skills skills={skills} />
+      <section className="section-divider" />
       <Projects projects={projects} />
+      <section className="section-divider" />
       <Contact />
+      <section className="section-divider" />
       <Footer />
     </main>
   );

@@ -1,8 +1,19 @@
+import { motion } from "framer-motion";
+import { scrollSection } from "./animations";
+
 export default function Projects({ projects }) {
   return (
-    <section className="section section--band" id="projects" aria-label="Projects">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      variants={scrollSection}
+      viewport={{ once: true }}
+      className="section section--band section--loose"
+      id="projects"
+      aria-label="Projects"
+    >
       <div className="container">
-        <h2 className="section-title">Selected work</h2>
+        <h2 className="section-title">Projects</h2>
         <div className="projects-list">
           {projects.map((project) => (
             <div className="project" key={project.id}>
@@ -50,6 +61,6 @@ export default function Projects({ projects }) {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

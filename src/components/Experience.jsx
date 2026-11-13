@@ -1,19 +1,18 @@
+import { motion } from "framer-motion";
+import { scrollSection } from "./animations";
 import { education } from "../data/experience";
 
 export default function Experience({ experience: list }) {
-  const SUMMARY = {
-    "Algorithms Software":
-      "ERP payroll module; bulk employee-image import via Excel; SQL queries, stored procedures and client-side fixes.",
-    EECI:
-      "Real-time hardware monitoring desktop client; charted machine data over Ethernet via C/C++ interop (P/Invoke).",
-    "D2K Technologies":
-      "Loan-platform REST APIs (CRUD) for a mobile app; JWT authentication; endpoints shaped with the frontend team.",
-    "LearningMate Solutions":
-      "E-learning course content for K-12 sections; placeholder sections for client-hosted videos.",
-  };
-
   return (
-    <section className="section" id="experience" aria-label="Experience">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      variants={scrollSection}
+      viewport={{ once: true }}
+      className="section"
+      id="experience"
+      aria-label="Experience"
+    >
       <div className="container">
         <h2 className="section-title">Experience</h2>
         <div className="timeline">
@@ -29,7 +28,13 @@ export default function Experience({ experience: list }) {
                   ))}
                 </div>
               </div>
-              <p className="role-summary">{SUMMARY[role.company]}</p>
+              <ul className="role-bullets">
+                {role.bullets.map((bullet) => (
+                  <li key={bullet} className="role-bullet">
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
@@ -40,6 +45,6 @@ export default function Experience({ experience: list }) {
           </p>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
