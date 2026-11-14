@@ -1,50 +1,70 @@
-import { motion } from "framer-motion";
-import { scrollSection } from "./animations";
+import { useState } from "react";
 import { education } from "../data/experience";
 
 export default function Experience({ experience: list }) {
+  const [tab, setTab] = useState("work");
   return (
-    <motion.section
-      initial="hidden"
-      whileInView="visible"
-      variants={scrollSection}
-      viewport={{ once: true }}
-      className="section"
-      id="experience"
-      aria-label="Experience"
-    >
-      <div className="container">
-        <h2 className="section-title">Experience</h2>
-        <div className="timeline">
-          {list.map((role) => (
-            <div className="role" key={role.company}>
-              <div className="role-head">
-                <h3 className="role-company">{role.company}</h3>
-                <p className="role-title">{role.title}</p>
-                <div className="role-meta">
-                  <span>{role.dates}</span>
-                  {role.tags.map((t) => (
-                    <span key={t} className="chip">{t}</span>
-                  ))}
+    <section id="experience" className="section" aria-label="Experience">
+      <div className="wrap">
+        <p className="section-label">EXPERIENCE</p>
+        <div className="tablist" role="tablist" aria-label="Experience">
+          <button
+            className={`tab ${tab === "work" ? "active" : ""}`}
+            onClick={() => setTab("work")}
+            role="tab"
+            aria-selected={tab === "work"}
+          >
+            Work
+          </button>
+          <button
+            className={`tab ${tab === "education" ? "active" : ""}`}
+            onClick={() => setTab("education")}
+            role="tab"
+            aria-selected={tab === "education"}
+          >
+            Education
+          </button>
+        </div>
+        {tab === "work" ? (
+          <div role="tabpanel" id="tabpanel-work">
+            {list.map((role) => (
+              <div className="job-card" key={role.company}>
+                <div className="job-header">
+                  {role.url ? (
+                    <a
+                      href={role.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="job-company"
+                    >
+                      {role.company}
+                    </a>
+                  ) : (
+                    <h3 className="job-company">{role.company}</h3>
+                  )}
+                  <span className="job-dates">{role.dates}</span>
                 </div>
+                <p className="job-role">{role.title}</p>
+                <ul className="job-bullets">
+                  {role.bullets.map((bullet) => (
+                    <li key={bullet} className="job-bullet">{bullet}</li>
+                  ))}
+                </ul>
               </div>
-              <ul className="role-bullets">
-                {role.bullets.map((bullet) => (
-                  <li key={bullet} className="role-bullet">
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
+            ))}
+          </div>
+        ) : (
+          <div role="tabpanel" id="tabpanel-education">
+            <div className="education-card">
+              <div className="education-header">
+                <h3 className="education-school">{education.school}</h3>
+                <span className="education-years">{education.years}</span>
+              </div>
+              <p className="education-degree">{education.degree}</p>
             </div>
-          ))}
-        </div>
-        <div className="education">
-          <p>
-            <strong>Education:</strong>{" "}
-            {education.degree}, {education.school} ({education.years}).
-          </p>
-        </div>
+          </div>
+        )}
       </div>
-    </motion.section>
+    </section>
   );
 }

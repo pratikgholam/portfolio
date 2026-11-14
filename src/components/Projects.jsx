@@ -1,66 +1,101 @@
-import { motion } from "framer-motion";
-import { scrollSection } from "./animations";
+import { useState } from "react";
+import { GitHubIcon } from "./icons";
+
+const ArrowIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M5 5l6 6 -6 6" />
+  </svg>
+);
+
+function ProjectCard({ project }) {
+  return (
+    <article className="project-card" key={project.id}>
+      {project.image && (
+        <img
+          src={project.image}
+          alt=""
+          className="project-image"
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+      <div className="project-header">
+        <h3 className="project-title">{project.title}</h3>
+      </div>
+      <p className="project-desc">{project.problem}</p>
+      <div className="tech-tags">
+        {project.tech.map((t) => (
+          <span key={t} className="tech-tag">{t}</span>
+        ))}
+      </div>
+      <div className="project-button-container">
+        <a
+          href={project.repo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn project-github"
+          aria-label={`${project.title} on GitHub`}
+        >
+          <GitHubIcon /> GitHub
+        </a>
+      </div>
+    </article>
+  );
+}
 
 export default function Projects({ projects }) {
+  const [showAll, setShowAll] = useState(false);
+
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
+
+  const handleToggle = () => {
+    const next = !showAll;
+    setShowAll(next);
+    if (!next) {
+      const el = document.getElementById("projects");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
-    <motion.section
-      initial="hidden"
-      whileInView="visible"
-      variants={scrollSection}
-      viewport={{ once: true }}
-      className="section section--band section--loose"
-      id="projects"
-      aria-label="Projects"
-    >
-      <div className="container">
-        <h2 className="section-title">Projects</h2>
-        <div className="projects-list">
-          {projects.map((project) => (
-            <div className="project" key={project.id}>
-              <div>
-                <h3 className="project-title">{project.title}</h3>
-                <span className="project-status">{project.status}</span>
-                <div className="project-tech">
-                  {project.tech.map((t) => (
-                    <span key={t} className="chip">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <p className="project-problem">{project.problem}</p>
-                <div className="project-meta">
-                  {project.built && (
-                    <div className="meta-line">
-                      <strong>Built:</strong>{" "}
-                      {project.built}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="project-actions">
-                <a
-                  href={project.repo}
-                  className="btn"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  GitHub
-                </a>
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    className="btn"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Live demo
-                  </a>
-                )}
-              </div>
-            </div>
+    <section id="projects" className="section" aria-label="Projects">
+      <div className="wrap">
+        <div className="projects-header">
+          <p className="section-label">PROJECTS</p>
+          {rest.length > 0 && (
+            <button
+              type="button"
+              className="toggle-btn"
+              aria-expanded={showAll}
+              aria-controls="projects-list"
+              onClick={handleToggle}
+            >
+              {showAll ? "View less" : "View more"}
+              <ArrowIcon />
+            </button>
+          )}
+        </div>
+        <div id="projects-list">
+          {featured.map((p) => (
+            <ProjectCard key={p.id} project={p} />
           ))}
+          {showAll &&
+            rest.map((p) => (
+              <ProjectCard key={p.id} project={p} />
+            ))}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

@@ -1,34 +1,49 @@
-import { motion } from "framer-motion";
-import { scrollSection } from "./animations";
+import { DownloadIcon, LinkedInIcon, GitHubIcon, EmailIcon } from "./icons";
 
 export default function Hero({ profile }) {
   return (
-    <motion.section
-      initial="hidden"
-      whileInView="visible"
-      variants={scrollSection}
-      viewport={{ once: true }}
-      className="section" id="hero" aria-label="Hero"
-    >
-      <div className="container">
-        <div className="hero-lede">
-          <h1 className="lede-title">{profile.name}</h1>
-          <p className="hero-sentence">{profile.tagline}</p>
+    <section id="home" className="section" aria-label="Hero">
+      <div className="wrap">
+        <div className="hero-inner">
+          <h1>👋 Hi, Pratik here</h1>
+          <p className="hero-role">Backend Engineer from Mumbai, India 🇮🇳</p>
+          <p className="hero-pitch">
+            I build REST APIs and data-driven applications in C# and .NET.
+          </p>
           <div className="hero-actions">
-            <a href="#projects" className="btn primary">
-              See my work
-            </a>
             <a
               href="/resume.pdf"
-              className="btn"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
+              className="btn"
+              aria-label="Download resume"
             >
-              Download resume
+              <DownloadIcon /> Resume
+            </a>
+            <a
+              href="https://www.linkedin.com/in/pratikgholam/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-icon"
+              aria-label="LinkedIn"
+            >
+              <LinkedInIcon />
+            </a>
+            <a
+              href="https://github.com/pratikgholam"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-icon"
+              aria-label="GitHub"
+            >
+              <GitHubIcon />
+            </a>
+            <a href={`mailto:${profile.email}`} className="btn-icon" aria-label="Email">
+              <EmailIcon />
             </a>
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
