@@ -1,6 +1,7 @@
 export const experience = [
   {
     company: "Algorithms Software",
+    url: null,
     title: "Software Engineer",
     dates: "Jun 2025 – Feb 2026",
     bullets: [
@@ -12,6 +13,7 @@ export const experience = [
   },
   {
     company: "EECI",
+    url: null,
     title: "Software Engineer",
     dates: "May 2023 – Mar 2024",
     bullets: [
@@ -28,6 +30,7 @@ export const experience = [
   },
   {
     company: "D2K Technologies",
+    url: null,
     title: "Dotnet Developer",
     dates: "Mar 2022 – Apr 2023",
     bullets: [
@@ -38,6 +41,7 @@ export const experience = [
   },
   {
     company: "LearningMate Solutions",
+    url: null,
     title: "Web Developer",
     dates: "Aug 2019 – Mar 2022",
     bullets: [
@@ -49,7 +53,7 @@ export const experience = [
 ];
 
 export const education = {
-  degree: "BE Information Technology",
+  degree: "Bachelor of Science in Information Technology",
   school: "Mumbai University",
   years: "2015-2019",
 };
